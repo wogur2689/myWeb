@@ -22,14 +22,16 @@
 .not-found h1 {
   font-size: 4rem;
   margin-bottom: 0.5rem;
+  color: var(--text-primary);
 }
 
 .not-found p {
-  color: #6b7280;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
 .not-found a {
-  color: #2563eb;
+  color: var(--ocean-bright);
+  text-decoration: underline;
 }
 </style>
