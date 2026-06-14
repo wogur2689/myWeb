@@ -1,14 +1,18 @@
 {
-  "name": "my-web",
+  "name": "my-web-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Node.js backend for myWeb",
+  "type": "module",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^5.2.1"
   }
 }
