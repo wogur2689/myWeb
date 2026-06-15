@@ -4,6 +4,8 @@ import { useAppStore } from '@/store/app.js'
 import { homeLinks } from '@/constants/homeLinks.js'
 
 const { title } = storeToRefs(useAppStore())
+
+const days = Array.from({ length: 30 }, (_, i) => i + 1);
 </script>
 
 <template>
@@ -35,6 +37,59 @@ const { title } = storeToRefs(useAppStore())
       </li>
     </ul>
   </section>
+  <section class="home">
+
+    <h1>구구단</h1>
+    <div>
+      <table border="1">
+      <thead>
+        <tr>
+          <th v-for="dan in 9" :key="dan">
+            {{ dan }}단
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="num in 9" :key="num">
+          <td v-for="dan in 9" :key="dan">
+            {{ dan }} × {{ num }} = {{ dan * num }}
+          </td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="home">
+    <h1>캘린더</h1>
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button>&lt;</button>
+      <h2>2026년 6월</h2>
+      <button>&gt;</button>
+    </div>
+
+    <div class="week-header">
+      <div>일</div>
+      <div>월</div>
+      <div>화</div>
+      <div>수</div>
+      <div>목</div>
+      <div>금</div>
+      <div>토</div>
+    </div>
+
+    <div class="calendar-body">
+      <div
+        v-for="day in days"
+        :key="day"
+        class="day-cell"
+      >
+        {{ day }}
+      </div>
+    </div>
+  </div>
+</section>
 </template>
 
 <style scoped>
@@ -135,5 +190,61 @@ const { title } = storeToRefs(useAppStore())
   .home__link {
     max-width: none;
   }
+}
+
+.calendar-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background: var(--ocean-glass);
+  border-radius: 15px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.calendar-header button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--ocean-glass);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+}
+
+.week-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: var(--ocean-glass);
+}
+
+.day-cell {
+  min-height: 120px;
+  padding: 10px;
+  background: var(--ocean-glass);
+  font-size: 15px;
+}
+
+.day-cell:hover {
+  background: var(--ocean-glass);
 }
 </style>
