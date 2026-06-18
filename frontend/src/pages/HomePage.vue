@@ -38,10 +38,8 @@ const days = Array.from({ length: 30 }, (_, i) => i + 1);
     </ul>
   </section>
   <section class="home">
-
-    <h1>구구단</h1>
-    <div>
-      <table border="1">
+    <div class="gugudan-container">
+      <table class="gugudan-table">
       <thead>
         <tr>
           <th v-for="dan in 9" :key="dan">
@@ -61,7 +59,6 @@ const days = Array.from({ length: 30 }, (_, i) => i + 1);
     </div>
   </section>
   <section class="home">
-    <h1>캘린더</h1>
   <div class="calendar-container">
     <div class="calendar-header">
       <button>&lt;</button>
@@ -192,8 +189,23 @@ const days = Array.from({ length: 30 }, (_, i) => i + 1);
   }
 }
 
+.gugudan-container {
+  width: 100%;
+  margin: 30px auto;
+  padding: 20px;
+  background: var(--ocean-glass);
+  border-radius: 15px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.gugudan-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--ocean-glass-border);
+}
+
 .calendar-container {
-  max-width: 1200px;
+  width: 100%;
   margin: 30px auto;
   padding: 20px;
   background: var(--ocean-glass);
