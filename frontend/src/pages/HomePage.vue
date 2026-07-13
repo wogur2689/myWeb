@@ -2,10 +2,11 @@
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/store/app.js'
 import { homeLinks } from '@/constants/homeLinks.js'
+import CalendarWidget from '@/components/widgets/CalendarWidget.vue'
+import CalculatorWidget from '@/components/widgets/CalculatorWidget.vue'
+import ClockWidget from '@/components/widgets/ClockWidget.vue'
 
 const { title } = storeToRefs(useAppStore())
-
-const days = Array.from({ length: 30 }, (_, i) => i + 1);
 </script>
 
 <template>
@@ -37,56 +38,11 @@ const days = Array.from({ length: 30 }, (_, i) => i + 1);
       </li>
     </ul>
   </section>
-  <section class="home">
-    <div class="gugudan-container">
-      <table class="gugudan-table">
-      <thead>
-        <tr>
-          <th v-for="dan in 9" :key="dan">
-            {{ dan }}단
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="num in 9" :key="num">
-          <td v-for="dan in 9" :key="dan">
-            {{ dan }} × {{ num }} = {{ dan * num }}
-          </td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+  <section class="home home--tools">
+    <ClockWidget />
+    <CalendarWidget />
+    <CalculatorWidget />
   </section>
-  <section class="home">
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <button>&lt;</button>
-      <h2>2026년 6월</h2>
-      <button>&gt;</button>
-    </div>
-
-    <div class="week-header">
-      <div>일</div>
-      <div>월</div>
-      <div>화</div>
-      <div>수</div>
-      <div>목</div>
-      <div>금</div>
-      <div>토</div>
-    </div>
-
-    <div class="calendar-body">
-      <div
-        v-for="day in days"
-        :key="day"
-        class="day-cell"
-      >
-        {{ day }}
-      </div>
-    </div>
-  </div>
-</section>
 </template>
 
 <style scoped>
@@ -189,74 +145,32 @@ const days = Array.from({ length: 30 }, (_, i) => i + 1);
   }
 }
 
-.gugudan-container {
-  width: 100%;
-  margin: 30px auto;
-  padding: 20px;
-  background: var(--ocean-glass);
-  border-radius: 15px;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-}
-
-.gugudan-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--ocean-glass-border);
-}
-
-.calendar-container {
-  width: 100%;
-  margin: 30px auto;
-  padding: 20px;
-  background: var(--ocean-glass);
-  border-radius: 15px;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-}
-
-.calendar-header {
+.home--tools {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: auto;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
 }
 
-.calendar-header button {
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: var(--ocean-glass);
-  cursor: pointer;
-  font-size: 18px;
+.home--tools > * {
+  flex: 1;
+  min-width: 0;
+  max-width: 22rem;
 }
 
-.calendar-header h2 {
-  margin: 0;
-}
+@media (max-width: 768px) {
+  .home--tools {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.week-header {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.calendar-body {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-  background: var(--ocean-glass);
-}
-
-.day-cell {
-  min-height: 120px;
-  padding: 10px;
-  background: var(--ocean-glass);
-  font-size: 15px;
-}
-
-.day-cell:hover {
-  background: var(--ocean-glass);
+  .home--tools > * {
+    max-width: none;
+  }
 }
 </style>

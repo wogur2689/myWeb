@@ -10,8 +10,7 @@ export const homeLinks = [
     id: 'blog',
     label: '블로그',
     description: '글과 기록',
-    href: 'https://blog.naver.com/wogur2689',
-    external: true,
+    to: '/blog',
   },
   {
     id: 'projects',
@@ -22,7 +21,7 @@ export const homeLinks = [
   {
     id: 'about',
     label: '소개',
-    description: '나의소개.',
+    description: 'About me',
     to: '/about',
   },
 ]
