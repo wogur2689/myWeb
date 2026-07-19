@@ -32,12 +32,7 @@ const { display, buttons, handleButton } = useCalculator()
 <style scoped>
 .calculator {
   width: 100%;
-  padding: 1.25rem;
-  background: var(--ocean-glass);
-  border: 1px solid var(--ocean-glass-border);
-  border-radius: 1rem;
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-ocean);
+  padding-top: 0.25rem;
 }
 
 .calculator__display {
